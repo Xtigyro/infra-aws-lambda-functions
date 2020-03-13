@@ -1,8 +1,8 @@
 import json
 import boto3
 
-ec2 = boto3.client('ec2')
-s3 = boto3.client('s3')
+ec2 = boto3.resource('ec2')
+s3 = boto3.resource('s3')
 
 
 def lambda_handler(event, context):
