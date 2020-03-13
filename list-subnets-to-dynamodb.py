@@ -5,7 +5,7 @@ ec2 = boto3.client('ec2')
 dynamodb = boto3.client('dynamodb')
 
 
-def lambda_handler_subnets(event, context):
+def lambda_handler(event, context):
 
     subnets = ec2.describe_subnets()
 
