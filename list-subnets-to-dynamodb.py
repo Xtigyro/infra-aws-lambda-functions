@@ -5,25 +5,6 @@ ec2 = boto3.client('ec2')
 dynamodb = boto3.client('dynamodb')
 
 
-def lambda_handler_vpcs(event, context):
-
-    vpcs = ec2.describe_vpcs()
-
-    vpc_ids = []
-
-    for vpc in vpcs['Vpcs']:
-        vpc_ids.append(vpc['VpcId'])
-
-        dynamodb.put_item(TableName='vpc_ids', Item={vpc['VpcId']})
-
-    vpc_ids_json = json.dumps(vpc_ids)
-
-    return {
-        'statusCode': 200,
-        'body': vpc_ids_json
-    }
-
-
 def lambda_handler_subnets(event, context):
 
     subnets = ec2.describe_subnets()
