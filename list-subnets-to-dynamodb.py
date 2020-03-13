@@ -14,7 +14,8 @@ def lambda_handler_subnets(event, context):
     for subnet in subnets['Subnets']:
         subnet_ids.append(subnet['SubnetId'])
 
-        dynamodb.put_item(TableName='subnet_ids', Item={subnet['SubnetId']})
+        dynamodb.put_item(TableName='subnet_ids', Item={'SUBNET_ID': {
+            'S': subnet['SubnetId']}, 'CIDR': {'S': subnet['CidrBlock']}})
 
     subnet_ids_json = json.dumps(subnet_ids)
 
