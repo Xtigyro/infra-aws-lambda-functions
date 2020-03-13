@@ -14,8 +14,8 @@ def lambda_handler(event, context):
     for vpc in vpcs['Vpcs']:
         vpc_ids.append(vpc['VpcId'])
 
-        dynamodb.put_item(TableName='vpc_ids', Item={vpc['VpcId']: {
-            'S': vpc['CidrBlock']}})
+        dynamodb.put_item(TableName='vpc_ids', Item={'VPC_ID': {
+            'S': vpc['VpcId']}, 'CIDR': {'S': vpc['CidrBlock']}})
 
     vpc_ids_json = json.dumps(vpc_ids)
 
