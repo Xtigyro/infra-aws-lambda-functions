@@ -21,11 +21,11 @@ def lambda_handler(event, context):
     for instance in instances:
         RunningInstances.append(instance.id)
 
-        instanceList = json.dumps(RunningInstances)
+    instanceList = json.dumps(RunningInstances)
 
-        s3.Object(
-            'kodyaz-com-aws',
-            'instanceList.txt').put(Body=instanceList)
+    s3.Object(
+        'kodyaz-com-aws',
+        'instanceList.txt').put(Body=instanceList)
 
     return {
         'statusCode': 200,
